@@ -1,0 +1,12 @@
+[build]
+  publish = "."
+
+[[redirects]]
+  from = "/book"
+  to = "/book.html"
+  status = 301
+
+[[redirects]]
+  from = "/success"
+  to = "/success/"
+  status = 301
