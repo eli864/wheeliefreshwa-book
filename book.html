@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Book a Bin Clean — Wheelie Fresh WA</title>
+  <style>
+    :root { --green:#1a9a5c }
+    body { font-family: system-ui,-apple-system,Segoe UI,Roboto,Arial; margin:0 }
+    .wrap { max-width:760px; margin:32px auto; padding:16px }
+    h1 { margin:0 0 4px }
+    p.sub { color:#333; margin:0 0 16px }
+    form { display:grid; gap:12px }
+    input, select, textarea { width:100%; padding:.6rem; border:1px solid #ddd; border-radius:10px }
+    fieldset { border:1px solid #eee; padding:10px; border-radius:12px }
+    legend { font-weight:600 }
+    label > small { color:#666 }
+    button { padding:.9rem 1.1rem; border:0; border-radius:12px; background:var(--green); color:#fff; font-weight:700; cursor:pointer }
+    .row { display:grid; gap:10px; grid-template-columns:1fr 1fr }
+    .row-3 { display:grid; gap:10px; grid-template-columns:2fr 1fr 1fr }
+    .quick { display:flex; gap:8px; flex-wrap:wrap; margin-top:8px }
+    .quick a { border:1px solid #ddd; border-radius:999px; padding:.5rem .8rem; text-decoration:none; color:#111 }
+    a { color: var(--green) }
+    @media (max-width:640px){ .row,.row-3 { grid-template-columns:1fr } }
+  </style>
+</head>
+<body>
+  <section class="wrap">
+    <h1>Book a Bin Clean</h1>
+    <p class="sub">Broome only. We’ll confirm by SMS.</p>
+
+    <!-- Netlify Forms (full fields, like your current website) -->
+    <form name="booking" method="POST" action="/success/" data-netlify="true" netlify-honeypot="bot-field" autocomplete="on" novalidate>
+      <!-- Netlify required hidden fields -->
+      <input type="hidden" name="form-name" value="booking" />
+      <p style="display:none"><label>Don’t fill this out if you’re human: <input name="bot-field" /></label></p>
+
+      <!-- Contact -->
+      <label>Full name* <input type="text" name="name" required /></label>
+      <div class="row">
+        <label>Mobile number* <input type="tel" name="phone" required inputmode="tel" pattern="^[0-9 +()-]{8,}$" placeholder="e.g. 0413 616 597" /></label>
+        <label>Email* <input type="email" name="email" required placeholder="your@email.com" /></label>
+      </div>
+
+      <!-- Service address -->
+      <fieldset>
+        <legend>Service address*</legend>
+        <div class="row-3">
+          <input type="text" name="address_line" required placeholder="Street & number" />
+          <input type="text" name="suburb" required placeholder="Suburb" />
+          <input type="text" name="postcode" required placeholder="Postcode" />
+        </div>
+      </fieldset>
+
+      <!-- Plan & bins -->
+      <div class="row">
+        <label>Plan* 
+          <select name="plan" required>
+            <option value="" selected disabled>Select</option>
+            <option>One-Off Clean</option>
+            <option>Monthly Plan</option>
+            <option>Fortnightly Plan</option>
+          </select>
+        </label>
+        <label>Number of bins* 
+          <select name="bins" required>
+            <option value="" selected disabled>Select</option>
+            <option>1 bin</option><option>2 bins</option>
+            <option>3 bins</option><option>4 bins</option>
+          </select>
+        </label>
+      </div>
+
+      <!-- Logistics -->
+      <div class="row">
+        <label>Usual bin day* 
+          <select name="bin_day" required>
+            <option value="" selected disabled>Select</option>
+            <option>Monday</option><option>Tuesday</option><option>Wednesday</option>
+            <option>Thursday</option><option>Friday</option>
+          </select>
+        </label>
+        <label>Preferred payment* 
+          <select name="payment" required>
+            <option value="" selected disabled>Select</option>
+            <option>Invoice</option>
+            <option>Contactless</option>
+            <option>Cash</option>
+          </select>
+        </label>
+      </div>
+
+      <label>Access notes (gate codes, dogs, etc.)
+        <textarea name="access_notes" rows="3" placeholder="Anything we should know?"></textarea>
+      </label>
+
+      <!-- Neighbour share -->
+      <fieldset>
+        <legend>Neighbour Bin-Share</legend>
+        <label><input type="checkbox" name="neighbour_share" /> I’m sharing bins with next-door/adjacent neighbour</label>
+        <label>Neighbour’s address
+          <input type="text" name="neighbour_address" placeholder="e.g. 12 Sandpiper Dr" />
+        </label>
+      </fieldset>
+
+      <!-- Bin-itiative -->
+      <fieldset>
+        <legend>Community Bin-itiative (10¢ cans)</legend>
+        <label><input type="checkbox" name="bin_itiative" /> I’ll leave eligible 10¢ containers out for collection</label>
+        <label>Where will the cans be left?
+          <input type="text" name="cans_location" placeholder="Next to recycling bin / front verge" />
+        </label>
+      </fieldset>
+
+      <!-- Consent -->
+      <label>
+        <input type="checkbox" name="consent" required />
+        I agree to Wheelie Fresh WA contacting me to confirm my booking.
+      </label>
+
+      <button type="submit">Send booking request</button>
+
+      <!-- Quick contact fallbacks -->
+      <div class="quick">
+        <a href="tel:+61413616597">Call</a>
+        <a href="sms:+61413616597?&body=Hi%20Wheelie%20Fresh,%20I%20want%20to%20book%20a%20bin%20clean.">Text</a>
+        <a href="https://wa.me/61413616597?text=Hi%20Wheelie%20Fresh,%20I%20want%20to%20book%20a%20bin%20clean.">WhatsApp</a>
+        <a href="mailto:wheeliefreshwa@gmail.com?subject=Booking%20request&body=Name:%0D%0AMobile:%0D%0AAddress:%0D%0APlan:%0D%0ABins:%0D%0ABin%20day:%0D%0ANotes:">Email</a>
+      </div>
+    </form>
+  </section>
+</body>
+</html>
